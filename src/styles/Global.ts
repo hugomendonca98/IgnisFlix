@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
-import backgroundImage from '../../public/images/background.jpeg';
+import backgroundImage from '@/../public/images/background.jpeg';
 
 export const GlobalStyles = createGlobalStyle`
   * {

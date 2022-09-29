@@ -1,7 +1,7 @@
 import type { NextPage } from 'next';
 import Image from 'next/image';
-import Header from '../components/Header';
-import { ContentContainer } from '../styles/Home';
+import Header from '@/components/Header';
+import { ContentContainer } from '@/styles/Home';
 
 import personaImage from '../../public/images/persona.png';
 

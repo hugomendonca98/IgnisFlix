@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import personaBg from '../../public/images/persona-bg.png';
+import personaBg from '@/../public/images/persona-bg.png';
 
 export const ContentContainer = styled.div`
   width: 100%;
@@ -29,13 +29,20 @@ export const ContentContainer = styled.div`
     }
 
     a {
-      background: var(--primary-red);
       width: 90%;
       padding: 15px 0 15px 0;
-      text-align: center;
       border-radius: 8px;
+      background: var(--primary-red);
+      text-align: center;
+
       font-weight: 700;
       font-size: 1rem;
+
+      transition: filter 0.2s;
+
+      &:hover {
+        filter: brightness(0.8);
+      }
     }
   }
 `;
