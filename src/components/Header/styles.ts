@@ -5,8 +5,10 @@ interface HeaderContainerProps {
 }
 
 export const HeaderContainer = styled.div<HeaderContainerProps>`
+  width: 100%;
   display: flex;
   flex-direction: ${props => props.align};
+  justify-content: center;
   padding-top: 25px;
 
   button {

@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 
 import { HeaderContainer } from './styles';
 
@@ -14,10 +15,16 @@ export default function Header({
   align = 'column',
   backButton = true,
 }: HeaderProps) {
+  const router = useRouter();
+
+  const handleBackToHome = () => {
+    router.push('/');
+  };
+
   return (
     <HeaderContainer align={align}>
       {backButton && (
-        <button type="button">
+        <button type="button" onClick={handleBackToHome}>
           <Image src={backImage} alt="Botão voltar" />
         </button>
       )}

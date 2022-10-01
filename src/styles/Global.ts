@@ -1,7 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
 
-import backgroundImage from '@/../public/images/background.jpeg';
-
 export const GlobalStyles = createGlobalStyle`
   * {
       padding: 0;
@@ -19,16 +17,11 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   body {
-    font-family: Helvetica, sans-serif;
+    font-family: 'Helvetica Neue', Helvetica, sans-serif;
     font-size: 0.75rem;
     color: var(--white);
 
-    background-image: url(${backgroundImage.src});
-    background-size: cover;
-    background-position-x: center;
-    background-repeat: no-repeat;
 
-    min-height: 100vh;
   }
 
   button {
