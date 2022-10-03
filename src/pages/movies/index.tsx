@@ -1,4 +1,4 @@
-import { getSession } from 'next-auth/react';
+import { getSession, useSession } from 'next-auth/react';
 import { GetServerSideProps } from 'next';
 
 import Header from '@/components/Header';
@@ -12,14 +12,21 @@ import {
 import iconSearch from '@/../public/images/search.png';
 import MovieCard from '@/components/MovieCard';
 
-export default function Movies() {
+interface MoviesProps {
+  user: {
+    email: string;
+    name: string;
+  };
+}
+
+export default function Movies({ user }: MoviesProps) {
   return (
     <>
       <BackgroundContainer>
         <Header align="row" backButton={true} />
         <ContentContainer>
           <p>
-            Bem vindo<span>, Hugo Mendonça</span>
+            Bem vindo<span>, {user.name}</span>
           </p>
           <Input
             name="search"
@@ -54,6 +61,8 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   }
 
   return {
-    props: {},
+    props: {
+      user: session.user,
+    },
   };
 };

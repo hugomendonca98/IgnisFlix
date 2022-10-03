@@ -29,7 +29,7 @@ export default NextAuth({
         }
 
         if (res.data.accessToken && res.data.user) {
-          return res.data;
+          return res.data.user;
         }
         return null;
       },
@@ -57,6 +57,8 @@ export default NextAuth({
       session.accessToken = token.accessToken;
       session.refreshToken = token.refreshToken;
       session.accessTokenExpires = token.accessTokenExpires;
+
+      //console.log(session);
 
       return session;
     },
