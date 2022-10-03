@@ -1,3 +1,6 @@
+import { getSession } from 'next-auth/react';
+import { GetServerSideProps } from 'next';
+
 import Header from '@/components/Header';
 import Input from '@/components/Input';
 import {
@@ -37,3 +40,20 @@ export default function Movies() {
     </>
   );
 }
+
+export const getServerSideProps: GetServerSideProps = async ({ req }) => {
+  const session = await getSession({ req });
+
+  if (!session?.user) {
+    return {
+      redirect: {
+        destination: '/account/signin',
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {},
+  };
+};

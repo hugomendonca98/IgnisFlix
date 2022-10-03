@@ -2,17 +2,23 @@ import styled from 'styled-components';
 
 import backgroundImage from '@/../public/images/background.jpeg';
 
-export const ContentContainer = styled.div`
+export const ContentContainer = styled.form`
   position: relative;
   width: 90%;
   margin: auto;
   margin-top: 45px;
 
-  label {
+  & > label {
     margin: 8px 0px 8px 0px;
     display: inline-block;
     font-weight: bold;
     font-size: 1rem;
+  }
+
+  & > span {
+    display: block;
+    margin: 10px 0px 10px 0px;
+    color: var(--primary-red);
   }
 `;
 
