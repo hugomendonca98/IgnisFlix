@@ -17,11 +17,9 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   body {
-    font-family: 'Helvetica Neue', Helvetica, sans-serif;
+    font-family: Helvetica, sans-serif;
     font-size: 0.75rem;
     color: var(--white);
-
-
   }
 
   button {

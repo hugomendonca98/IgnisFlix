@@ -11,6 +11,8 @@ export const ContentContainer = styled.div`
   label {
     margin: 8px 0px 8px 0px;
     display: inline-block;
+    font-weight: bold;
+    font-size: 1rem;
   }
 `;
 

@@ -24,7 +24,9 @@ export const ContentContainer = styled.div`
     p {
       margin: 5px 0 15px 0;
       color: var(--gray);
-      font-weight: 500;
+      font-weight: bold;
+      font-family: Helvetica, sans-serif;
+      font-size: 0.75rem;
     }
 
     a {
