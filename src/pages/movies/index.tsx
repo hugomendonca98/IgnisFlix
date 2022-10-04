@@ -16,7 +16,7 @@ import posterNotFound from '@/../public/images/poster.png';
 import backdropNotFound from '@/../public/images/backdrop.png';
 
 import api from '@/services/api';
-import { useEffect, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Button from '@/components/Button';
 
@@ -66,15 +66,29 @@ export default function Movies({
     router.push(`/movies?search=${encodeURIComponent(search)}&page=${1}`);
   }
 
+  /**
+   * Preferi realizar dessa forma para que todas as páginas de resultados
+   * possam ter um desempenho de SEO melhor.
+   * --------------------------------------------------------------------
+   Poderia Realizar também apenas a primeira página em SSR e o restante
+   das páginas "Ver mais" em cliente side, assim apenas ir adicionando
+   novos filmes a listagem.
+   */
   function handleNextPage() {
     router.push(
       `/movies?search=${encodeURIComponent(search)}&page=${Number(page) + 1}`,
     );
   }
 
+  function handleKeyPress(event: KeyboardEvent) {
+    if (event.key === 'Enter') {
+      handleSearch();
+    }
+  }
+
   function handleExpand(id: number) {
     setMovieExpandId(id);
-    window.scrollTo(0, 0);
+    window.scrollTo(0, 235);
   }
 
   return (
@@ -94,6 +108,7 @@ export default function Movies({
             value={search}
             onChange={e => setSearch(e.target.value)}
             iconHandle={() => handleSearch()}
+            keyHandle={e => handleKeyPress(e)}
           />
           <h1>Filmes</h1>
           <CardsContainer>

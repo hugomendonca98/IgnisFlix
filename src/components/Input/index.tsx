@@ -9,6 +9,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   iconWidth?: number;
   iconHeight?: number;
   iconHandle?: () => void;
+  keyHandle?: (e: any) => void;
   borderRadius?: string;
 }
 
@@ -17,6 +18,7 @@ export default function Input({
   iconWidth = 24,
   iconHeight = 20,
   iconHandle,
+  keyHandle,
   borderRadius = '8px',
   ...rest
 }: InputProps) {
@@ -32,7 +34,12 @@ export default function Input({
 
   return (
     <InputContainer isFocused={isFocused} borderRadius={borderRadius}>
-      <input onFocus={handleInputFocus} onBlur={handleInputBlur} {...rest} />
+      <input
+        onFocus={handleInputFocus}
+        onBlur={handleInputBlur}
+        onKeyUp={keyHandle}
+        {...rest}
+      />
       <div>
         {icon && (
           <Image

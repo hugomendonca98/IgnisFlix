@@ -1,34 +1,62 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<p align="center">
+  <img alt="IgnisFlix" src=".github/images/Logo.png" width="160px">
+</p>
 
-## Getting Started
+<p align="center">
+  <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-projeto">Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-como-executar">Como executar</a>&nbsp;&nbsp;&nbsp;
+</p>
 
-First, run the development server:
+<br>
+
+## 🧪 Tecnologias
+
+Esse projeto foi desenvolvido com as seguintes tecnologias:
+
+- [Next](https://github.com/vercel/next.js)
+- [NextAuth](https://github.com/nextauthjs/next-auth)
+- [TypeScript](https://github.com/microsoft/TypeScript)
+- [Styled Components](https://github.com/styled-components/styled-components)
+
+## 🚀 Como executar
+
+Clone o projeto e acesse a pasta do mesmo.
 
 ```bash
-npm run dev
-# or
-yarn dev
+$ git clone https://github.com/hugomendonca98/IgnisFlix.git
+$ cd IgnisFlix
+```
+Definindo variaveis de ambiente em .env.local
+# Url da aplicação (cliente) para uso do nextauth.
+NEXTAUTH_URL=http://localhost:3000
+
+# Recomendo gerar uma md5 hash em https://www.md5hashgenerator.com/
+JWT_SECRET=
+
+Para iniciá-lo, siga os passos abaixo:
+```bash
+# Instalar as dependências
+$ yarn
+
+# Iniciar o projeto (dev)
+$ yarn dev
+
+# Iniciar o projecto (Production)
+$ yarn build
+$ yarn start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Lembrando que será necessário usar o backend em nodejs [E_Learning_API](https://github.com/hugomendonca98/E_Learning_API)
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## 💻 Projeto
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+A aplicação é voltada para educação, que oferece cursos de diversas áreas de conhecimento com um conteúdo em formato de vídeo aulas.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## 🔖 Layout
 
-## Learn More
+Você pode visualizar o layout do projeto através do link abaixo:
 
-To learn more about Next.js, take a look at the following resources:
+- [IgnisFlix](https://www.figma.com/file/auVNLJhsiVs7wPvonfRhPe/Ignis---teste-entrevista?node-id=0%3A1)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Lembrando que você precisa ter uma conta no [Figma](http://figma.com/).

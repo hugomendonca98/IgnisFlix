@@ -27,6 +27,16 @@ export const ContentContainer = styled.div<MovieCardProps>`
     bottom: ${props => (props.expand ? '10px' : '-10px')};
     margin-top: ${props => (props.expand ? '20px' : '0px')};
     margin-left: ${props => (props.expand ? '85%' : '71%')};
+
+    @media (min-width: 1000px) {
+      margin-top: 0px;
+      bottom: 5px;
+      ${porps =>
+        porps.expand &&
+        css`
+          right: 10px;
+        `}
+    }
   }
 `;
 

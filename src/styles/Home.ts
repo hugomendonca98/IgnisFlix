@@ -51,7 +51,7 @@ export const ContentContainer = styled.div`
 `;
 
 export const BackgroundContainer = styled.div`
-  height: 100vh;
+  min-height: 100vh;
 
   background-image: url(${backgroundImage.src});
   background-size: cover;

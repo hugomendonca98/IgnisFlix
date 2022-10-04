@@ -47,7 +47,7 @@ export default function MovieCard({
         <Image
           src={expand ? imageExpandUrl : imageUrl}
           alt=""
-          width={expand ? '336px' : '154px'}
+          width={expand ? '456px' : '154px'}
           height={expand ? '334px' : '232px'}
         />
       </CardImageContainer>

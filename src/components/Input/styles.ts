@@ -42,5 +42,10 @@ export const InputContainer = styled.div<InputContainerProps>`
     margin: 0px 15px 0px 12px;
     cursor: pointer;
     opacity: 30%;
+    transition: opacity 0.2s;
+
+    &:hover {
+      opacity: 1;
+    }
   }
 `;
