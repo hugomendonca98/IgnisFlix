@@ -37,7 +37,7 @@ export default function Input({
       <input
         onFocus={handleInputFocus}
         onBlur={handleInputBlur}
-        onKeyUp={keyHandle}
+        //onKeyUp={keyHandle}
         {...rest}
       />
       <div>

@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { toast } from 'react-toastify';
@@ -31,12 +31,14 @@ interface SignInProps {
 export default function SignIn({ error }: SignInProps) {
   const [isShownPass, setIsSHownPass] = useState(false);
 
-  if (error && !toast.isActive(error)) {
-    console.log(error);
-    toast.error('Erro ao tentar realizar o login, tente novamente.', {
-      toastId: error,
-    });
-  }
+  useEffect(() => {
+    if (error && !toast.isActive(error)) {
+      console.log(error);
+      toast.error('Erro ao tentar realizar o login, tente novamente.', {
+        toastId: error,
+      });
+    }
+  }, [error]);
 
   const signinSchema = Yup.object().shape({
     email: Yup.string()
