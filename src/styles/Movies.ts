@@ -43,4 +43,6 @@ export const CardsContainer = styled.div`
   flex-wrap: wrap;
   gap: 24px;
   padding-bottom: 24px;
+  width: 90%;
+  margin: auto;
 `;

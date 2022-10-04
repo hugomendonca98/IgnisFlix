@@ -18,20 +18,28 @@ export default NextAuth({
         },
       },
       async authorize(credentials, req) {
-        const res = await api.post('/login', {
-          email: credentials?.email,
-          password: credentials?.password,
-        });
+        try {
+          const res = await api.post('/login', {
+            email: credentials?.email,
+            password: credentials?.password,
+          });
 
-        if (res.statusText !== 'OK') {
-          console.log('caiu');
-          throw new Error('A error is ocurred on auth.');
-        }
+          if (res) {
+            const userAccount = {
+              id: res.data.user.id,
+              name: res.data.user.name,
+              email: res.data.user.email,
+              token: res.data.accessToken.token,
+            };
 
-        if (res.data.accessToken && res.data.user) {
-          return res.data.user;
+            return userAccount;
+          } else {
+            return null;
+          }
+        } catch (error: any) {
+          const message = error.response.data.message;
+          throw new Error(message);
         }
-        return null;
       },
     }),
   ],
@@ -42,23 +50,17 @@ export default NextAuth({
   },
   callbacks: {
     jwt({ token, user, account, profile, isNewUser }) {
-      if (account && user) {
-        return {
-          ...token,
-          accessToken: account.access_token,
-          refreshToken: account.refresh_token,
-        };
+      if (user) {
+        token.accessToken = user.token;
       }
 
       return token;
     },
 
-    async session({ session, token }) {
+    async session({ session, token, user }) {
       session.accessToken = token.accessToken;
       session.refreshToken = token.refreshToken;
       session.accessTokenExpires = token.accessTokenExpires;
-
-      //console.log(session);
 
       return session;
     },

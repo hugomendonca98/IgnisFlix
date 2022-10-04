@@ -8,9 +8,26 @@ import {
 } from './styles';
 
 import cardImage from '@/../public/images/card.jpg';
+import expandImage from '@/../public/images/image1.png';
 import Image from 'next/image';
 
-export default function MovieCard() {
+interface MovieCardProps {
+  expand?: boolean;
+  title: string;
+  description: string;
+  stats: number;
+  imageUrl: string;
+  imageExpandUrl: string;
+}
+
+export default function MovieCard({
+  expand = false,
+  title,
+  description,
+  stats = 0,
+  imageUrl,
+  imageExpandUrl,
+}: MovieCardProps) {
   const GradientSVG = () => (
     <svg style={{ height: 0 }}>
       <defs>
@@ -23,20 +40,25 @@ export default function MovieCard() {
   );
 
   return (
-    <ContentContainer>
+    <ContentContainer expand={expand}>
       <CardImageContainer>
-        <Image src={cardImage} alt="" />
+        <Image
+          src={expand ? imageExpandUrl : imageUrl}
+          alt=""
+          width={expand ? '336px' : '154px'}
+          height={expand ? '334px' : '232px'}
+        />
       </CardImageContainer>
 
-      <CardTextContainer>
+      <CardTextContainer expand={expand}>
         <div className="stats" style={{ height: '40px', width: '40px' }}>
           <GradientSVG />
           <CircularProgressbar
             background={true}
             counterClockwise={true}
             strokeWidth={5}
-            value={66}
-            text={'66%'}
+            value={stats}
+            text={`${stats}%`}
             styles={{
               path: { stroke: `url(#svg-porcent)`, height: '100%' },
               trail: {
@@ -52,15 +74,10 @@ export default function MovieCard() {
             }}
           />
         </div>
-        <h1>Nome do filme</h1>
-        <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quasi,
-          inventore quod laborum sed necessitatibus similique delectus quidem
-          totam eos autem dolorem qui, maiores doloremque sapiente. Modi dolorum
-          molestiae aspernatur? Eligendi!
-        </p>
-        <button>Ver mais</button>
+        <h1>{title}</h1>
+        <p>{description}</p>
       </CardTextContainer>
+      <button>Ver mais</button>
     </ContentContainer>
   );
 }

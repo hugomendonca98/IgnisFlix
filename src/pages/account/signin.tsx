@@ -73,7 +73,13 @@ export default function SignIn() {
     <BackgroundContainer>
       <Header />
       <main>
-        <ContentContainer onSubmit={formik.handleSubmit} noValidate>
+        <ContentContainer
+          onSubmit={e => {
+            e.preventDefault();
+            formik.handleSubmit(e);
+          }}
+          noValidate
+        >
           <label>Email / Username</label>
           <Input
             name="email"
