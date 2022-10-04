@@ -24,8 +24,19 @@ interface SigninCredentials {
   password: string;
 }
 
-export default function SignIn() {
+interface SignInProps {
+  error: string;
+}
+
+export default function SignIn({ error }: SignInProps) {
   const [isShownPass, setIsSHownPass] = useState(false);
+
+  if (error && !toast.isActive(error)) {
+    console.log(error);
+    toast.error('Erro ao tentar realizar o login, tente novamente.', {
+      toastId: error,
+    });
+  }
 
   const signinSchema = Yup.object().shape({
     email: Yup.string()
@@ -57,8 +68,6 @@ export default function SignIn() {
       ...values,
       callbackUrl: '/movies',
     });
-
-    console.log(res);
 
     if (res?.error) {
       if (res.status === 401) {
@@ -107,8 +116,21 @@ export default function SignIn() {
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ req }) => {
+export const getServerSideProps: GetServerSideProps = async ({
+  req,
+  query,
+}) => {
   const session = await getSession({ req });
+
+  const { error } = query;
+
+  if (error) {
+    return {
+      props: {
+        error,
+      },
+    };
+  }
 
   if (session?.user) {
     return {

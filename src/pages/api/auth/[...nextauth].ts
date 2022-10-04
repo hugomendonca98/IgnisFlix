@@ -37,8 +37,7 @@ export default NextAuth({
             return null;
           }
         } catch (error: any) {
-          const message = error.response.data.message;
-          throw new Error(message);
+          throw new Error(error.code);
         }
       },
     }),
@@ -47,6 +46,7 @@ export default NextAuth({
   secret: process.env.JWT_SECRET,
   pages: {
     signIn: '/account/signin',
+    error: '/account/signin',
   },
   callbacks: {
     jwt({ token, user, account, profile, isNewUser }) {

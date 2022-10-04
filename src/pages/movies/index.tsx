@@ -165,8 +165,6 @@ export const getServerSideProps: GetServerSideProps = async ({
   }
   const { page, search } = query;
 
-  console.log(typeof page);
-
   let movies = [];
   let isValidToken = true;
 
