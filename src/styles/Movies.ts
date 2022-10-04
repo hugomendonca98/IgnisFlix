@@ -46,3 +46,9 @@ export const CardsContainer = styled.div`
   width: 90%;
   margin: auto;
 `;
+
+export const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  padding-bottom: 30px;
+`;

@@ -16,6 +16,7 @@ interface MovieCardProps {
   title: string;
   description: string;
   stats: number;
+  handleDetail: () => void;
   imageUrl: string;
   imageExpandUrl: string;
 }
@@ -25,6 +26,7 @@ export default function MovieCard({
   title,
   description,
   stats = 0,
+  handleDetail,
   imageUrl,
   imageExpandUrl,
 }: MovieCardProps) {
@@ -77,7 +79,9 @@ export default function MovieCard({
         <h1>{title}</h1>
         <p>{description}</p>
       </CardTextContainer>
-      <button>Ver mais</button>
+      <button type="button" onClick={handleDetail}>
+        {expand ? 'Ver menos' : 'Ver mais'}
+      </button>
     </ContentContainer>
   );
 }

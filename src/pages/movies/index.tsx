@@ -7,6 +7,7 @@ import {
   ContentContainer,
   BackgroundContainer,
   CardsContainer,
+  ButtonContainer,
 } from '@/styles/Movies';
 
 import iconSearch from '@/../public/images/search.png';
@@ -15,8 +16,9 @@ import posterNotFound from '@/../public/images/poster.png';
 import backdropNotFound from '@/../public/images/backdrop.png';
 
 import api from '@/services/api';
-import { FormEvent, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import Button from '@/components/Button';
 
 interface MoviesData {
   adult: boolean;
@@ -42,22 +44,37 @@ interface MoviesProps {
   };
   isValidToken: boolean;
   movies: MoviesData[];
+  page: string;
 }
 
-export default function Movies({ user, isValidToken, movies }: MoviesProps) {
+export default function Movies({
+  user,
+  isValidToken,
+  movies,
+  page,
+}: MoviesProps) {
   if (!isValidToken) {
     signOut({ redirect: true, callbackUrl: '/account/signin' });
   }
 
   const router = useRouter();
+
   const [search, setSearch] = useState('');
+  const [movieExpandId, setMovieExpandId] = useState<number>();
 
   function handleSearch() {
-    console.log('sim');
+    router.push(`/movies?search=${encodeURIComponent(search)}&page=${1}`);
+  }
 
-    router.push(`/movies?search=${encodeURIComponent(search)}`);
+  function handleNextPage() {
+    router.push(
+      `/movies?search=${encodeURIComponent(search)}&page=${Number(page) + 1}`,
+    );
+  }
 
-    setSearch('');
+  function handleExpand(id: number) {
+    setMovieExpandId(id);
+    window.scrollTo(0, 0);
   }
 
   return (
@@ -87,21 +104,29 @@ export default function Movies({ user, isValidToken, movies }: MoviesProps) {
                 description={movie.overview}
                 stats={Number(movie.vote_average.toString().replace('.', ''))}
                 imageUrl={
-                  movie.poster_path ===
-                    'https://image.tmdb.org/t/p/w500/null' || !movie.poster_path
+                  !movie.poster_path ||
+                  movie.poster_path === 'https://image.tmdb.org/t/p/w500/null'
                     ? posterNotFound.src
                     : movie.poster_path
                 }
                 imageExpandUrl={
-                  movie.backdrop_path ===
-                    'https://image.tmdb.org/t/p/w500/null' ||
-                  !movie.backdrop_path
+                  !movie.backdrop_path ||
+                  movie.backdrop_path === 'https://image.tmdb.org/t/p/w500/null'
                     ? backdropNotFound.src
                     : movie.backdrop_path
                 }
+                handleDetail={() =>
+                  handleExpand(movieExpandId === movie.id ? -1 : movie.id)
+                }
+                expand={movieExpandId === movie.id}
               />
             ))}
           </CardsContainer>
+          <ButtonContainer>
+            <Button type="button" onClick={() => handleNextPage()}>
+              Ver mais
+            </Button>
+          </ButtonContainer>
         </ContentContainer>
       </BackgroundContainer>
     </>
@@ -125,14 +150,14 @@ export const getServerSideProps: GetServerSideProps = async ({
   }
   const { page, search } = query;
 
+  console.log(typeof page);
+
   let movies = [];
   let isValidToken = true;
 
-  console.log(page, search);
-
   try {
     const response = await api.get(
-      `/movies${search ? `?query=${search}` : ''}`,
+      `/movies?query=${search ? `${search}` : ''}&page=${page ? page : ''}`,
       {
         headers: {
           Authorization: `Bearer ${session.accessToken}`,
@@ -153,6 +178,7 @@ export const getServerSideProps: GetServerSideProps = async ({
       user: session.user,
       movies,
       isValidToken,
+      page: page ? page : '1',
     },
   };
 };

@@ -11,9 +11,10 @@ export default function Button({
   children,
   background = '#F52D2D',
   color = '#FFFFFF',
+  ...rest
 }: ButtonProps) {
   return (
-    <ButtonContainer color={color} background={background}>
+    <ButtonContainer color={color} background={background} {...rest}>
       {children}
     </ButtonContainer>
   );

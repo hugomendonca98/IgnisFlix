@@ -48,6 +48,16 @@ export const CardTextContainer = styled.div<MovieCardProps>`
     font-size: 0.875rem;
     color: var(--white);
     margin: 20px 0px 6px 0px;
+
+    ${props =>
+      !props.expand &&
+      css`
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+      `}
   }
 
   & > p {
