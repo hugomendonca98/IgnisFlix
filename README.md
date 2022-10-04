@@ -4,7 +4,6 @@
 
 <p align="center">
   <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-projeto">Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-como-executar">Como executar</a>&nbsp;&nbsp;&nbsp;
 </p>
 
@@ -27,11 +26,13 @@ Clone o projeto e acesse a pasta do mesmo.
 $ git clone https://github.com/hugomendonca98/IgnisFlix.git
 $ cd IgnisFlix
 ```
-Definindo variaveis de ambiente em .env.local
-# Url da aplicação (cliente) para uso do nextauth.
+## Definindo variaveis de ambiente em .env.local
+Url da aplicação (cliente) para uso do nextauth.
+</br>
 NEXTAUTH_URL=http://localhost:3000
 
-# Recomendo gerar uma md5 hash em https://www.md5hashgenerator.com/
+Recomendo gerar uma md5 hash em https://www.md5hashgenerator.com/
+</br>
 JWT_SECRET=
 
 Para iniciá-lo, siga os passos abaixo:
@@ -46,12 +47,6 @@ $ yarn dev
 $ yarn build
 $ yarn start
 ```
-
-Lembrando que será necessário usar o backend em nodejs [E_Learning_API](https://github.com/hugomendonca98/E_Learning_API)
-
-## 💻 Projeto
-
-A aplicação é voltada para educação, que oferece cursos de diversas áreas de conhecimento com um conteúdo em formato de vídeo aulas.
 
 ## 🔖 Layout
 
