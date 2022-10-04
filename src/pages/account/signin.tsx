@@ -18,6 +18,7 @@ import iconPass from '@/../public/images/basic-eye.png';
 
 import { getSession, signIn } from 'next-auth/react';
 import { GetServerSideProps } from 'next';
+import Head from 'next/head';
 
 interface SigninCredentials {
   email: string;
@@ -81,40 +82,45 @@ export default function SignIn({ error }: SignInProps) {
   }, []);
 
   return (
-    <BackgroundContainer>
-      <Header />
-      <main>
-        <ContentContainer
-          onSubmit={e => {
-            e.preventDefault();
-            formik.handleSubmit(e);
-          }}
-          noValidate
-        >
-          <label>Email / Username</label>
-          <Input
-            name="email"
-            type="email"
-            onChange={formik.handleChange}
-            value={formik.values.email}
-          />
-          {formik.errors.email && <span>{formik.errors.email}</span>}
-          <label>Senha</label>
-          <Input
-            name="password"
-            type={isShownPass ? 'text' : 'password'}
-            icon={isShownPass ? iconPass : iconPassSlash}
-            iconHandle={handleShowPass}
-            onChange={formik.handleChange}
-            value={formik.values.password}
-          />
-          {formik.errors.password && <span>{formik.errors.password}</span>}
-          <FixedContent>
-            <Button type="submit">Entrar</Button>
-          </FixedContent>
-        </ContentContainer>
-      </main>
-    </BackgroundContainer>
+    <>
+      <Head>
+        <title>Entrar | IgnisFlix</title>
+      </Head>
+      <BackgroundContainer>
+        <Header />
+        <main>
+          <ContentContainer
+            onSubmit={e => {
+              e.preventDefault();
+              formik.handleSubmit(e);
+            }}
+            noValidate
+          >
+            <label>Email / Username</label>
+            <Input
+              name="email"
+              type="email"
+              onChange={formik.handleChange}
+              value={formik.values.email}
+            />
+            {formik.errors.email && <span>{formik.errors.email}</span>}
+            <label>Senha</label>
+            <Input
+              name="password"
+              type={isShownPass ? 'text' : 'password'}
+              icon={isShownPass ? iconPass : iconPassSlash}
+              iconHandle={handleShowPass}
+              onChange={formik.handleChange}
+              value={formik.values.password}
+            />
+            {formik.errors.password && <span>{formik.errors.password}</span>}
+            <FixedContent>
+              <Button type="submit">Entrar</Button>
+            </FixedContent>
+          </ContentContainer>
+        </main>
+      </BackgroundContainer>
+    </>
   );
 }
 

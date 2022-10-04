@@ -16,9 +16,10 @@ import posterNotFound from '@/../public/images/poster.png';
 import backdropNotFound from '@/../public/images/backdrop.png';
 
 import api from '@/services/api';
-import { FormEvent, useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/router';
 import Button from '@/components/Button';
+import Head from 'next/head';
 
 interface MoviesData {
   adult: boolean;
@@ -93,6 +94,9 @@ export default function Movies({
 
   return (
     <>
+      <Head>
+        <title>Filmes | IgnisFlix</title>
+      </Head>
       <BackgroundContainer>
         <Header align="row" backButton={true} />
         <ContentContainer>
